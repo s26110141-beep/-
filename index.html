@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的網頁作品集 | Pink Y2K Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Zen Maru Gothic & Bubblegum Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Zen Maru Gothic', 'Bubblegum Sans', sans-serif;
+            background: #fde2e4;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.8) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 105, 180, 0.6) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 1) 0%, rgba(253, 226, 228, 1) 100%);
+            background-attachment: fixed;
+            color: #5c3d46;
+            overflow-x: hidden;
+        }
+
+        /* 甜美點陣/微光網格背景 */
+        .pink-grid {
+            background-size: 24px 24px;
+            background-image: radial-gradient(circle, rgba(255, 105, 180, 0.15) 1.5px, transparent 1.5px);
+        }
+
+        /* 粉色毛玻璃效果 Pink Glassmorphism */
+        .pink-glass {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 12px 40px rgba(236, 72, 153, 0.15),
+                inset 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        /* 大頭貼邊框脈衝光暈 */
+        .avatar-container {
+            position: relative;
+        }
+        .avatar-container::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff85a1, #fbb1bd, #ff99c8, #ff85a1);
+            background-size: 200% 200%;
+            z-index: -1;
+            animation: gradientShift 4s ease infinite, pulseGlow 2.5s infinite alternate;
+            filter: blur(6px);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.6; filter: blur(4px); }
+            100% { opacity: 1; filter: blur(10px); }
+        }
+
+        /* 已解鎖按鈕 (粉色果動閃耀感 + Hover 動畫) */
+        .unlocked-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 226, 236, 0.9));
+            border: 2px solid #ff85a1;
+            box-shadow: 0 4px 15px rgba(255, 133, 161, 0.25), inset 0 0 10px rgba(255, 255, 255, 0.8);
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .unlocked-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .unlocked-card:hover::before {
+            left: 100%;
+        }
+
+        .unlocked-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            border-color: #ff3b70;
+            box-shadow: 
+                0 12px 25px rgba(255, 59, 112, 0.35),
+                0 0 20px rgba(255, 182, 193, 0.6);
+        }
+
+        /* 未解鎖按鈕 - 灰粉色遊戲關卡鎖定感 */
+        .locked-card {
+            background: rgba(235, 222, 226, 0.45);
+            border: 2px dashed rgba(180, 150, 160, 0.35);
+            color: #a0828c;
+            cursor: not-allowed;
+            transition: all 0.25s ease;
+        }
+
+        .locked-card:hover {
+            background: rgba(230, 210, 218, 0.6);
+            border-color: rgba(210, 130, 150, 0.5);
+            color: #8a6470;
+            animation: shake 0.4s ease-in-out;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-3px) rotate(-1deg); }
+            40% { transform: translateX(3px) rotate(1deg); }
+            60% { transform: translateX(-2px); }
+            80% { transform: translateX(2px); }
+        }
+
+        /* 浮動愛心裝飾動畫 */
+        .floating-heart {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6 relative pink-grid">
+
+    <!-- 背景可愛微光與心型氣泡裝飾 -->
+    <div class="fixed top-12 left-10 text-3xl opacity-30 floating-heart pointer-events-none">💖</div>
+    <div class="fixed bottom-16 right-12 text-4xl opacity-30 floating-heart pointer-events-none" style="animation-delay: 1.5s;">✨</div>
+    <div class="fixed top-1/3 right-10 text-2xl opacity-20 floating-heart pointer-events-none" style="animation-delay: 0.8s;">🌸</div>
+
+    <!-- 主要粉色毛玻璃容器 -->
+    <main class="pink-glass w-full max-w-5xl rounded-3xl p-6 sm:p-10 my-6 relative z-10">
+
+        <!-- 畫面中央區塊：個人大頭貼 + 名字 -->
+        <header class="flex flex-col items-center text-center mb-10">
+            <!-- 可愛大頭貼 (支援平滑預設圖) -->
+            <div class="avatar-container mb-4">
+                <img 
+                    src="https://i.postimg.cc/4dsZTc81/IMG-3923.jpg" 
+                    alt="個人大頭貼" 
+                    class="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-white shadow-md"
+                    onerror="this.src='https://placehold.co/150x150/ffcad4/ff477e?text=AVATAR'"
+                />
+            </div>
+
+            <!-- 主標題與使用者名稱 -->
+            <h1 class="text-2xl sm:text-4xl font-extrabold text-pink-600 tracking-wide mb-1 flex items-center gap-2">
+                <span>芷</span>
+                <span class="text-xl sm:text-2xl">🎀</span>
+            </h1>
+            <p class="text-xs sm:text-sm font-bold text-pink-400 tracking-widest uppercase mb-4">
+                My Web Development Quest Log
+            </p>
+
+            <!-- 遊戲化關卡進度條 -->
+            <div class="w-full max-w-xs sm:max-w-md bg-white/70 rounded-full h-4 border border-pink-300 p-0.5 shadow-inner flex items-center relative">
+                <div class="bg-gradient-to-r from-pink-400 to-rose-500 h-full rounded-full transition-all duration-700" style="width: 12.5%;"></div>
+                <span class="absolute right-3 text-[10px] font-extrabold text-pink-500">2 / 16 CLEARED</span>
+            </div>
+        </header>
+
+        <!-- 16 個按鈕區域 (Grid 網格：手機 1~2 欄，平板/電腦 4 欄) -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+
+            <!-- 按鈕 1 (已解鎖) -->
+            <a href="w1/index.html" class="unlocked-card group p-4 rounded-2xl flex flex-col justify-between min-h-[105px]">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-black text-pink-500 tracking-wider bg-pink-100/80 px-2 py-0.5 rounded-full">STAGE 01</span>
+                    <span class="text-sm animate-bounce">⭐</span>
+                </div>
+                <div class="my-2">
+                    <div class="text-base font-bold text-gray-800 group-hover:text-pink-600 transition-colors">
+                        Week 1 - 數位名片
+                    </div>
+                </div>
+                <div class="text-[11px] font-bold text-pink-400 flex items-center justify-between">
+                    <span>START QUEST</span>
+                    <span class="group-hover:translate-x-1 transition-transform">➔</span>
+                </div>
+            </a>
+
+            <!-- 按鈕 2 (已解鎖) -->
+            <a href="w2/index.html" class="unlocked-card group p-4 rounded-2xl flex flex-col justify-between min-h-[105px]">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-black text-rose-500 tracking-wider bg-rose-100/80 px-2 py-0.5 rounded-full">STAGE 02</span>
+                    <span class="text-sm animate-bounce" style="animation-delay: 0.2s;">🍰</span>
+                </div>
+                <div class="my-2">
+                    <div class="text-base font-bold text-gray-800 group-hover:text-rose-600 transition-colors">
+                        Week 2 - 今天吃甚麼?
+                    </div>
+                </div>
+                <div class="text-[11px] font-bold text-rose-400 flex items-center justify-between">
+                    <span>START QUEST</span>
+                    <span class="group-hover:translate-x-1 transition-transform">➔</span>
+                </div>
+            </a>
+
+            <!-- 按鈕 3 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 03</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 3 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 4 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 04</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 4 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 5 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 05</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 5 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 6 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 06</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 6 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 7 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 07</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 7 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 8 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 08</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 8 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 9 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 09</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 9 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 10 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 10</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 10 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 11 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 11</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 11 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 12 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 12</span>
+                    <span class="text-xs">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 12 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 13 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 13</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 13 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 14 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 14</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 14 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 15 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 15</span>
+                    <span class="text-sm">🔒</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 15 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    LOCKED
+                </div>
+            </div>
+
+            <!-- 按鈕 16 (未解鎖 🔒) -->
+            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold opacity-70">STAGE 16</span>
+                    <span class="text-sm">👑</span>
+                </div>
+                <div class="my-1 text-sm font-bold">
+                    Week 16 - 未解鎖 🔒
+                </div>
+                <div class="text-[10px] font-bold tracking-wider opacity-60">
+                    FINAL PROJECT
+                </div>
+            </div>
+
+        </section>
+
+        <!-- 頁尾宣告資訊 -->
+        <footer class="mt-10 pt-6 border-t border-pink-200 text-center text-xs text-pink-400 flex flex-col sm:flex-row justify-between items-center gap-2 font-medium">
+            <div class="flex items-center gap-1">
+                <span>STATUS:</span>
+                <span class="text-pink-600 font-bold">ONLINE 🌸</span>
+            </div>
+            <div>
+                © 2026 WEB PORTFOLIO. ALL RIGHTS RESERVED.
+            </div>
+        </footer>
+
+    </main>
+
+</body>
+</html>
