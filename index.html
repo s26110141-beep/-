@@ -164,8 +164,8 @@
 
             <!-- 遊戲化關卡進度條 -->
             <div class="w-full max-w-xs sm:max-w-md bg-white/70 rounded-full h-4 border border-pink-300 p-0.5 shadow-inner flex items-center relative">
-                <div class="bg-gradient-to-r from-pink-400 to-rose-500 h-full rounded-full transition-all duration-700" style="width: 12.5%;"></div>
-                <span class="absolute right-3 text-[10px] font-extrabold text-pink-500">2 / 16 CLEARED</span>
+                <div class="bg-gradient-to-r from-pink-400 to-rose-500 h-full rounded-full transition-all duration-700" style="width: 18.75%;"></div>
+                <span class="absolute right-3 text-[10px] font-extrabold text-pink-500">3 / 16 CLEARED</span>
             </div>
         </header>
 
@@ -206,19 +206,22 @@
                 </div>
             </a>
 
-            <!-- 按鈕 3 (未解鎖 🔒) -->
-            <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
+            <!-- 按鈕 3 (已解鎖 🎉) -->
+            <a href="w3/index.html" class="unlocked-card group p-4 rounded-2xl flex flex-col justify-between min-h-[105px]">
                 <div class="flex justify-between items-center">
-                    <span class="text-xs font-bold opacity-70">STAGE 03</span>
-                    <span class="text-sm">🔒</span>
+                    <span class="text-xs font-black text-fuchsia-500 tracking-wider bg-fuchsia-100/80 px-2 py-0.5 rounded-full">STAGE 03</span>
+                    <span class="text-sm animate-bounce" style="animation-delay: 0.4s;">😜</span>
                 </div>
-                <div class="my-1 text-sm font-bold">
-                    Week 3 - 未解鎖 🔒
+                <div class="my-2">
+                    <div class="text-base font-bold text-gray-800 group-hover:text-fuchsia-600 transition-colors">
+                        Week 3 - 迷因產生器
+                    </div>
                 </div>
-                <div class="text-[10px] font-bold tracking-wider opacity-60">
-                    LOCKED
+                <div class="text-[11px] font-bold text-fuchsia-400 flex items-center justify-between">
+                    <span>START QUEST</span>
+                    <span class="group-hover:translate-x-1 transition-transform">➔</span>
                 </div>
-            </div>
+            </a>
 
             <!-- 按鈕 4 (未解鎖 🔒) -->
             <div class="locked-card p-4 rounded-2xl flex flex-col justify-between min-h-[105px] select-none">
